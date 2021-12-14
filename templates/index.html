@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<h2>Welcome to the reading club</h2>
+<p> This is the best reading club you can even think of, please join.</p>
+<p>
+<a href="{% url 'register' %}" target="_blank"><b>Click here to join!</b></a>
+</p>
+<p>Current club participants:</p>
+{% if data %}
+<table border="solid">
+  <tbody>
+    <tr>
+      {% for field in fields %}
+      <th>{{field.name}}</th>
+      {% endfor %}
+    </tr>
+    {% for i in data %}
+    <tr>
+      {% for val in i%}
+         <td>{{val.value}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No participants so far. Be the first!</p>
+{% endif %}
+{% endblock %}
